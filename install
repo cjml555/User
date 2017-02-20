@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo -e "\033[0m                  \033[1;36m Instalando User Created Beta.\033[0m"
+sleep 5
+apt-get install sudo -y 1>/dev/null 2>/dev/null
+yum -y install sudo 1>/dev/null 2>/dev/null
+wget https://raw.githubusercontent.com/Devimla/UserLimit/master/create 1>/dev/null 2>/dev/null
+chmod +x create
+mv create /bin
+sleep 2
+e
+clear
+echo -e "\033[1;32mUser instalado com sucesso"
+sleep 3
+echo -e "EXECUTE O COMANDO USER" 
