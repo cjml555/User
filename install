@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\033[0m                    \033[1;36m Instalando User Create beta.\033[0m"
+echo -e "\033[1;36m         Instalando User Create beta.\033[0m"
 sleep 5
 apt-get install sudo -y 1>/dev/null 2>/dev/null
 yum -y install sudo 1>/dev/null 2>/dev/null
@@ -9,6 +9,6 @@ chmod +x create
 mv create /bin
 sleep 2
 clear
-echo -e "\033[1;36m                           User Create  instalado com sucesso :).\033[0m"
+echo -e "\033[1;36m          User Create  instalado com sucesso :).\033[0m"
 sleep 2
-echo -e "\033[1;36m                           Execute o comando user\033[0m"
+echo -e "\033[1;36m          Execute o comando user\033[0m"
