@@ -1,0 +1,28 @@
+#!/bin/bash
+
+mkdir /etc/usuariosteste 1>/dev/null 2>/dev/null
+echo -e "\033[0m                Usuarios teste\033[0m"
+for testus in $(ls /etc/usuariosteste |sort |sed 's/.sh//g')
+do
+echo "$testus"
+done
+printf "\n"
+printf "\033[1;36mNome do novo usuario:\033[0m "; read nome
+printf "\033[1;36mSenha do usuario:\033[0m "; read pass
+echo -e "\033[1;36mUse s = segundos, m = minutos, h = horas e d = dias EX: 14s .\033[0m"
+printf "\033[1;36mQuanto tempo usuario $nome deve durar:\033[0m";read tempoin
+tempo=$(echo "$tempoin" |sed 's/ //g')
+useradd -M -s /bin/false $nome
+(echo $pass;echo $pass) |passwd $nome 1>/dev/null 2>/dev/null
+echo "#!/bin/bash
+sleep $tempo
+kill"' $(ps -u '"$nome |awk '{print"' $1'"}') 1>/dev/null 2>/dev/null
+userdel —force $nome
+rm -rf /etc/usuariosteste/$nome.sh
+exit" > /etc/usuariosteste/$nome.sh
+echo -e "\033[1;35mUsuario: $nome
+Senha: $pass
+Validade: $tempo\n
+Apos o tempo expirar o usuario sera deletado e todos serão desconectados.\033[0m"
+bash /etc/usuariosteste/$nome.sh &
+exit
